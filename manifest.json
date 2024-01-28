@@ -1,46 +1,66 @@
 {
-  "manifest_version": 2,
-  "name": "LeetHub",
-  "description": "Automatically integrate your Leetcode & GeeksforGeeks submissions to GitHub",
-  "homepage_url": "https://github.com/QasimWani/LeetHub",
-  "version": "1.1.2",
-  "author": "Qasim Wani",
-  "browser_action": {
-    "default_icon": "assets/thumbnail.png",
-    "default_popup": "popup.html"
-  },
-  "icons": {
-    "16": "assets/thumbnail.png",
-    "48": "assets/thumbnail.png",
-    "128": "assets/thumbnail.png"
-  },
-  "background": {
-    "scripts": ["scripts/background.js"],
-    "persistent": false
-  },
-  "permissions": [
-    "https://github.com/*",
-    "https://api.github.com/*",
-    "https://leetcode.com/*",
-    "https://practice.geeksforgeeks.org/*",
-    "tabs",
-    "unlimitedStorage",
-    "storage"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://leetcode.com/*",
-        "https://github.com/*",
-        "https://practice.geeksforgeeks.org/*"
-      ],
-      "js": [
-        "scripts/leetcode.js",
-        "scripts/authorize.js",
-        "scripts/gfg.js"
-      ],
-      "run_at": "document_idle"
+    "manifest_version": 3,
+    "name": "LeetCodeSync",
+    "description": "Automatically integrate your Leetcode & GeeksforGeeks submissions to GitHub",
+    "version": "1.1.2",
+    "permissions": [
+      "activeTab",
+      "storage",
+      "https://github.com/*",
+      "https://api.github.com/*",
+      "https://leetcode.com/*",
+      "https://practice.geeksforgeeks.org/*"
+    ],
+    "host_permissions": [
+      {
+        "host": "github.com",
+        "permissions": ["scripting"]
+      },
+      {
+        "host": "leetcode.com",
+        "permissions": ["scripting"]
+      },
+      {
+        "host": "practice.geeksforgeeks.org",
+        "permissions": ["scripting"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "assets/thumbnail.png",
+        "48": "assets/thumbnail.png",
+        "128": "assets/thumbnail.png"
+      }
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": [
+          "https://leetcode.com/*",
+          "https://github.com/*",
+          "https://practice.geeksforgeeks.org/*"
+        ],
+        "js": [
+          "scripts/leetcode.js",
+          "scripts/authorize.js",
+          "scripts/gfg.js"
+        ],
+        "run_at": "document_idle"
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["assets/thumbnail.png"],
+        "matches": ["<all_urls>"]
+      }
+    ],
+    "icons": {
+      "16": "assets/thumbnail.png",
+      "48": "assets/thumbnail.png",
+      "128": "assets/thumbnail.png"
     }
-  ],
-  "content_security_policy": "script-src 'self' https://code.jquery.com/jquery-3.3.1.min.js https://github.com/login/oauth/authorize https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js; object-src 'self'"
-}
+  }
+  

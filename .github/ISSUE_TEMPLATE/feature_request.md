@@ -1,10 +1,9 @@
 ---
 name: Feature request
-about: What would enhance your LeetHub experience?
+about: What would enhance your LeetCodeSync experience?
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 ## Please review previous closed issues before filling out a new one! Duplicate issues will be closed without comment.

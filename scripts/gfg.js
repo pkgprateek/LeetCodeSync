@@ -7,9 +7,9 @@
 // };
 
 /* Commit messages */
-const README_MSG = 'Create README - LeetHub';
-const SUBMIT_MSG = 'Added solution - LeetHub';
-const UPDATE_MSG = 'Updated solution - LeetHub';
+const README_MSG = 'Create README - LeetCodeSync';
+const SUBMIT_MSG = 'Added solution - LeetCodeSync';
+const UPDATE_MSG = 'Updated solution - LeetCodeSync';
 let START_MONITOR = true;
 const toKebabCase = (string) => {
   return string
@@ -30,8 +30,9 @@ function findGfgLanguage() {
 }
 
 function findTitle() {
-  const ele = document.querySelector('[class^="problems_header_content__title"] > h3')
-    .innerText;
+  const ele = document.querySelector(
+    '[class^="problems_header_content__title"] > h3',
+  ).innerText;
   if (ele != null) {
     return ele;
   }
@@ -39,7 +40,9 @@ function findTitle() {
 }
 
 function findDifficulty() {
-  const ele = document.querySelectorAll('[class^="problems_header_description"]')[0].children[0].innerText;
+  const ele = document.querySelectorAll(
+    '[class^="problems_header_description"]',
+  )[0].children[0].innerText;
 
   if (ele != null) {
     if (ele.trim() == 'Basic' || ele.trim() === 'School') {
@@ -51,18 +54,19 @@ function findDifficulty() {
 }
 
 function getProblemStatement() {
-  const ele = document.querySelector('[class^="problems_problem_content"]');
+  const ele = document.querySelector(
+    '[class^="problems_problem_content"]',
+  );
   return `${ele.outerHTML}`;
 }
 
 function getCode() {
-
   const scriptContent = `
   var editor = ace.edit("ace-editor");
   var editorContent = editor.getValue();
   var para = document.createElement("pre");
   para.innerText+=editorContent;
-  para.setAttribute("id","codeDataLeetHub")
+  para.setAttribute("id","codeDataLeetCodeSync")
   document.body.appendChild(para);
   `;
 
@@ -74,7 +78,8 @@ function getCode() {
     document.head ||
     document.documentElement
   ).appendChild(script);
-  const text = document.getElementById('codeDataLeetHub').innerText;
+  const text = document.getElementById('codeDataLeetCodeSync')
+    .innerText;
 
   const nodeDeletionScript = `
   document.body.removeChild(para)
@@ -103,14 +108,22 @@ const gfgLoader = setInterval(() => {
       'practice.geeksforgeeks.org/problems',
     )
   ) {
-
-    const submitBtn = document.evaluate(".//button[text()='Submit']", document.body, null, XPathResult.ANY_TYPE, null).iterateNext();
+    const submitBtn = document
+      .evaluate(
+        ".//button[text()='Submit']",
+        document.body,
+        null,
+        XPathResult.ANY_TYPE,
+        null,
+      )
+      .iterateNext();
 
     submitBtn.addEventListener('click', function () {
       START_MONITOR = true;
       const submission = setInterval(() => {
-        const output = document.querySelectorAll('[class^="problems_content"]')[0]
-          .innerText;
+        const output = document.querySelectorAll(
+          '[class^="problems_content"]',
+        )[0].innerText;
         if (
           output.includes('Problem Solved Successfully') &&
           START_MONITOR

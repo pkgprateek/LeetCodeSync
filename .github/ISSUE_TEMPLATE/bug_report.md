@@ -1,10 +1,9 @@
 ---
 name: Bug report
-about: Create a report to help us improve LeetHub
+about: Create a report to help us improve LeetCodeSync
 title: ''
 labels: bug
 assignees: pkgprateek
-
 ---
 
 ## Please review previous closed issues before filling out a new one! Duplicate issues will be closed without comment.
@@ -14,6 +13,7 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'

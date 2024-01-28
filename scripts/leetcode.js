@@ -22,9 +22,9 @@ const languages = {
 };
 
 /* Commit messages */
-const readmeMsg = 'Create README - LeetHub';
-const discussionMsg = 'Prepend discussion post - LeetHub';
-const createNotesMsg = 'Attach NOTES - LeetHub';
+const readmeMsg = 'Create README - LeetCodeSync';
+const discussionMsg = 'Prepend discussion post - LeetCodeSync';
+const createNotesMsg = 'Attach NOTES - LeetCodeSync';
 
 // problem types
 const NORMAL_PROBLEM = 0;
@@ -194,15 +194,15 @@ function uploadGit(
   }
 
   /* Get necessary payload data */
-  chrome.storage.local.get('leethub_token', (t) => {
-    const token = t.leethub_token;
+  chrome.storage.local.get('leetcodesync_token', (t) => {
+    const token = t.leetcodesync_token;
     if (token) {
       chrome.storage.local.get('mode_type', (m) => {
         const mode = m.mode_type;
         if (mode === 'commit') {
           /* Get hook */
-          chrome.storage.local.get('leethub_hook', (h) => {
-            const hook = h.leethub_hook;
+          chrome.storage.local.get('leetcodesync_hook', (h) => {
+            const hook = h.leetcodesync_hook;
             if (hook) {
               /* Get SHA, if it exists */
 
@@ -342,7 +342,7 @@ function findCode(
                 slicedText.indexOf("'") + 1,
                 slicedText.lastIndexOf("'"),
               );
-              msg = `Time: ${resultRuntime}, Memory: ${resultMemory} - LeetHub`;
+              msg = `Time: ${resultRuntime}, Memory: ${resultMemory} - LeetCodeSync`;
             }
 
             if (code != null) {
@@ -508,7 +508,7 @@ function parseStats() {
   const spacePercentile = probStats[3].textContent;
 
   // Format commit message
-  return `Time: ${time} (${timePercentile}), Space: ${space} (${spacePercentile}) - LeetHub`;
+  return `Time: ${time} (${timePercentile}), Space: ${space} (${spacePercentile}) - LeetCodeSync`;
 }
 
 document.addEventListener('click', (event) => {
@@ -751,13 +751,15 @@ function insertToAnchorElement(elem) {
 /* start upload will inject a spinner on left side to the "Run Code" button */
 function startUpload() {
   try {
-    elem = document.getElementById('leethub_progress_anchor_element');
+    elem = document.getElementById(
+      'leetcodesync_progress_anchor_element',
+    );
     if (!elem) {
       elem = document.createElement('span');
-      elem.id = 'leethub_progress_anchor_element';
+      elem.id = 'leetcodesync_progress_anchor_element';
       elem.style = 'margin-right: 20px;padding-top: 2px;';
     }
-    elem.innerHTML = `<div id="leethub_progress_elem" class="leethub_progress"></div>`;
+    elem.innerHTML = `<div id="leetcodesync_progress_elem" class="leetcodesync_progress"></div>`;
     target = insertToAnchorElement(elem);
     // start the countdown
     startUploadCountDown();
@@ -768,9 +770,9 @@ function startUpload() {
   }
 }
 
-/* This will create a tick mark before "Run Code" button signalling LeetHub has done its job */
+/* This will create a tick mark before "Run Code" button signalling LeetCodeSync has done its job */
 function markUploaded() {
-  elem = document.getElementById('leethub_progress_elem');
+  elem = document.getElementById('leetcodesync_progress_elem');
   if (elem) {
     elem.className = '';
     style =
@@ -781,7 +783,7 @@ function markUploaded() {
 
 /* This will create a failed tick mark before "Run Code" button signalling that upload failed */
 function markUploadFailed() {
-  elem = document.getElementById('leethub_progress_elem');
+  elem = document.getElementById('leetcodesync_progress_elem');
   if (elem) {
     elem.className = '';
     style =
@@ -793,11 +795,11 @@ function markUploadFailed() {
 /* Sync to local storage */
 chrome.storage.local.get('isSync', (data) => {
   keys = [
-    'leethub_token',
-    'leethub_username',
-    'pipe_leethub',
+    'leetcodesync_token',
+    'leetcodesync_username',
+    'pipe_leetcodesync',
     'stats',
-    'leethub_hook',
+    'leetcodesync_hook',
     'mode_type',
   ];
   if (!data || !data.isSync) {
@@ -807,10 +809,10 @@ chrome.storage.local.get('isSync', (data) => {
       });
     });
     chrome.storage.local.set({ isSync: true }, (data) => {
-      console.log('LeetHub Synced to local values');
+      console.log('LeetCodeSync Synced to local values');
     });
   } else {
-    console.log('LeetHub Local storage already synced!');
+    console.log('LeetCodeSync Local storage already synced!');
   }
 });
 
@@ -821,6 +823,6 @@ injectStyle();
 function injectStyle() {
   const style = document.createElement('style');
   style.textContent =
-    '.leethub_progress {pointer-events: none;width: 2.0em;height: 2.0em;border: 0.4em solid transparent;border-color: #eee;border-top-color: #3E67EC;border-radius: 50%;animation: loadingspin 1s linear infinite;} @keyframes loadingspin { 100% { transform: rotate(360deg) }}';
+    '.leetcodesync_progress {pointer-events: none;width: 2.0em;height: 2.0em;border: 0.4em solid transparent;border-color: #eee;border-top-color: #3E67EC;border-radius: 50%;animation: loadingspin 1s linear infinite;} @keyframes loadingspin { 100% { transform: rotate(360deg) }}';
   document.head.append(style);
 }

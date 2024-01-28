@@ -2,25 +2,22 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="css/popup.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"
-    ></script>
-
+    <link rel="stylesheet" type="text/css" href="css/popup.css" />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
       rel="stylesheet"
+      type="text/css"
+      href="css/semantic.min.css"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/semantic.min.js"></script>
   </head>
 
   <body>
     <div class="ui grid container">
       <div class="sixteen wide center aligned column">
         <h1 id="title">
-          Leet<span style="color: #f18500">Hub</span>
+          LeetCode<span style="color: #f18500">Sync</span>
         </h1>
         <p id="caption">Sync your code from LeetCode to GitHub</p>
         <br />
@@ -30,7 +27,9 @@
             <br />
             Authenticate with GitHub to use
             <strong
-              >Leet<span style="color: #f18500">Hub</span></strong
+              >LeetCode<span style="color: #f18500"
+                >Sync</span
+              ></strong
             >
           </p>
           <button id="authenticate" class="ui secondary button">
@@ -100,7 +99,9 @@
 
       <!-- Generate Socials -->
       <div id="socials" class="sixteen wide column">
-        <a href="https://github.com/pkgprateek/LeetCodeSync" target="_blank"
+        <a
+          href="https://github.com/pkgprateek/LeetCodeSync"
+          target="_blank"
           ><i class="ui black github icon"></i
         ></a>
         <a

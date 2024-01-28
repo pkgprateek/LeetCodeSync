@@ -8,15 +8,15 @@ const localAuth = {
    * Initialize
    */
   init() {
-    this.KEY = 'leethub_token';
+    this.KEY = 'leetcodesync_token';
     this.ACCESS_TOKEN_URL =
       'https://github.com/login/oauth/access_token';
     this.AUTHORIZATION_URL =
       'https://github.com/login/oauth/authorize';
-    this.CLIENT_ID = 'beb4f0aa19ab8faf5004';
-    this.CLIENT_SECRET = '843f835609c7ef02ef0f2f1645bc49514c0e65a6';
+    this.CLIENT_ID = '2d4b70ee70d32c79f7c9';
+    this.CLIENT_SECRET = '3980d7cbc06c3a0afaee8d2f66f1452d091d0c94';
     this.REDIRECT_URL = 'https://github.com/'; // for example, https://github.com
-    this.SCOPES = ['repo'];
+    this.SCOPES = ['public_repo, read:user'];
   },
 
   /**
@@ -102,8 +102,8 @@ const link = window.location.href;
 
 /* Check for open pipe */
 if (window.location.host === 'github.com') {
-  chrome.storage.local.get('pipe_leethub', (data) => {
-    if (data && data.pipe_leethub) {
+  chrome.storage.local.get('pipe_leetcodesync', (data) => {
+    if (data && data.pipe_leetcodesync) {
       localAuth.parseAccessCode(link);
     }
   });

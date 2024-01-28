@@ -9,7 +9,12 @@
 
 ## Why did I forked LeetHub?
 <p>
-While using Leethub I was having issues with permission and authentication as I many of the repositories are sensitive in nature.
+I had two major reasons to fork LeetHub:
+  <ul>
+    <li><a href="https://github.com/QasimWani/LeetHub">LeetHub</a> has not been updated since last 2-3 years and given the new chrome standards, I wanted somethig stable for myself.</li>
+    <li>I was having few permission issues while trying to authenticate.</li>
+  </ul>
+  Therefore, all the updates made to this fork are for my convinience. But, everyone is welcome to use this extension as they please.
 </p>
 
 
@@ -24,7 +29,7 @@ While using Leethub I was having issues with permission and authentication as I 
 </ol>
 
 
-#### BONUS: Star [this repository (QasimWani)](https://github.com/QasimWani/LeetHub) for further development of features. If you want a particular feature, simply [request](https://github.com/QasimWani/LeetHub/labels/feature) for it!
+#### BONUS: Star [this repository](https://github.com/pkgprateek/LeetCodeSync) for further development of features. If you want a particular feature, simply [request](https://github.com/pkgprateek/LeetCodeSync/labels/feature) for it!
 
 
 

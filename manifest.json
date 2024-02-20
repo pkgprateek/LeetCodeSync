@@ -6,14 +6,14 @@
   "version": "1.0.1",
   "author": "Prateek Kumar Goel",
   "action": {
-    "default_icon": "assets/thumbnail.png",
+    "default_icon": "assets/thumbnail.jpg",
     "default_popup": "popup.html",
     "default-title": "LeetSync"
   },
   "icons": {
-    "16": "assets/thumbnail.png",
-    "48": "assets/thumbnail.png",
-    "128": "assets/thumbnail.png"
+    "16": "assets/thumbnail.jpg",
+    "48": "assets/thumbnail.jpg",
+    "128": "assets/thumbnail.jpg"
   },
   "background": {
     "service_worker": "scripts/background.js"

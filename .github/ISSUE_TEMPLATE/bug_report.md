@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve LeetCodeSync
+about: Create a report to help us improve LeetSync
 title: ''
 labels: bug
 assignees: pkgprateek

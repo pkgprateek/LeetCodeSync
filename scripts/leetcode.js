@@ -22,9 +22,9 @@ const languages = {
 };
 
 /* Commit messages */
-const readmeMsg = 'Create README - LeetCodeSync';
-const discussionMsg = 'Prepend discussion post - LeetCodeSync';
-const createNotesMsg = 'Attach NOTES - LeetCodeSync';
+const readmeMsg = 'Create README - LeetSync';
+const discussionMsg = 'Prepend discussion post - LeetSync';
+const createNotesMsg = 'Attach NOTES - LeetSync';
 
 // problem types
 const NORMAL_PROBLEM = 0;
@@ -194,15 +194,15 @@ function uploadGit(
   }
 
   /* Get necessary payload data */
-  chrome.storage.local.get('leetcodesync_token', (t) => {
-    const token = t.leetcodesync_token;
+  chrome.storage.local.get('leetsync_token', (t) => {
+    const token = t.leetsync_token;
     if (token) {
       chrome.storage.local.get('mode_type', (m) => {
         const mode = m.mode_type;
         if (mode === 'commit') {
           /* Get hook */
-          chrome.storage.local.get('leetcodesync_hook', (h) => {
-            const hook = h.leetcodesync_hook;
+          chrome.storage.local.get('leetsync_hook', (h) => {
+            const hook = h.leetsync_hook;
             if (hook) {
               /* Get SHA, if it exists */
 
@@ -220,30 +220,43 @@ function uploadGit(
                   sha = stats.sha[filePath];
                 }
 
-                if (action === 'upload') {
-                  /* Upload to git. */
-                  upload(
-                    token,
-                    hook,
-                    code,
-                    problemName,
-                    fileName,
-                    sha,
-                    msg,
-                    cb,
-                  );
-                } else if (action === 'update') {
-                  /* Update on git */
-                  update(
-                    token,
-                    hook,
-                    code,
-                    problemName,
-                    msg,
-                    prepend,
-                    cb,
-                  );
-                }
+                // if (action === 'upload') {
+                //   /* Upload to git. */
+                //   upload(
+                //     token,
+                //     hook,
+                //     code,
+                //     problemName,
+                //     fileName,
+                //     sha,
+                //     msg,
+                //     cb,
+                //   );
+                // } else if (action === 'update') {
+                //   /* Update on git */
+                //   update(
+                //     token,
+                //     hook,
+                //     code,
+                //     problemName,
+                //     msg,
+                //     prepend,
+                //     cb,
+                //   );
+                // }
+                const uniqueFileName = `${fileName}-${Math.random()}`;
+
+                /* Upload to git. */
+                upload(
+                  token,
+                  hook,
+                  code,
+                  problemName,
+                  uniqueFileName,
+                  sha,
+                  msg,
+                  cb,
+                );
               });
             }
           });
@@ -342,7 +355,7 @@ function findCode(
                 slicedText.indexOf("'") + 1,
                 slicedText.lastIndexOf("'"),
               );
-              msg = `Time: ${resultRuntime}, Memory: ${resultMemory} - LeetCodeSync`;
+              msg = `Time: ${resultRuntime}, Memory: ${resultMemory} - LeetSync`;
             }
 
             if (code != null) {
@@ -478,9 +491,8 @@ function parseQuestion() {
     const markdown = `<h2><a href="${questionUrl}">${qtitle}</a></h2><h3>${difficulty}</h3><hr>${qbody}`;
     return markdown;
   } else if (checkElem(questionDescriptionElem)) {
-    let questionTitle = document.getElementsByClassName(
-      'question-title',
-    );
+    let questionTitle =
+      document.getElementsByClassName('question-title');
     if (checkElem(questionTitle)) {
       questionTitle = questionTitle[0].innerText;
     } else {
@@ -508,7 +520,7 @@ function parseStats() {
   const spacePercentile = probStats[3].textContent;
 
   // Format commit message
-  return `Time: ${time} (${timePercentile}), Space: ${space} (${spacePercentile}) - LeetCodeSync`;
+  return `Time: ${time} (${timePercentile}), Space: ${space} (${spacePercentile}) - LeetSync`;
 }
 
 document.addEventListener('click', (event) => {
@@ -752,14 +764,14 @@ function insertToAnchorElement(elem) {
 function startUpload() {
   try {
     elem = document.getElementById(
-      'leetcodesync_progress_anchor_element',
+      'leetsync_progress_anchor_element',
     );
     if (!elem) {
       elem = document.createElement('span');
-      elem.id = 'leetcodesync_progress_anchor_element';
+      elem.id = 'leetsync_progress_anchor_element';
       elem.style = 'margin-right: 20px;padding-top: 2px;';
     }
-    elem.innerHTML = `<div id="leetcodesync_progress_elem" class="leetcodesync_progress"></div>`;
+    elem.innerHTML = `<div id="leetsync_progress_elem" class="leetleetsyncgress"></div>`;
     target = insertToAnchorElement(elem);
     // start the countdown
     startUploadCountDown();
@@ -770,9 +782,9 @@ function startUpload() {
   }
 }
 
-/* This will create a tick mark before "Run Code" button signalling LeetCodeSync has done its job */
+/* This will create a tick mark before "Run Code" button signalling LeetSync has done its job */
 function markUploaded() {
-  elem = document.getElementById('leetcodesync_progress_elem');
+  elem = document.getElementById('leetsync_progress_elem');
   if (elem) {
     elem.className = '';
     style =
@@ -783,7 +795,7 @@ function markUploaded() {
 
 /* This will create a failed tick mark before "Run Code" button signalling that upload failed */
 function markUploadFailed() {
-  elem = document.getElementById('leetcodesync_progress_elem');
+  elem = document.getElementById('leetsync_progress_elem');
   if (elem) {
     elem.className = '';
     style =
@@ -795,11 +807,11 @@ function markUploadFailed() {
 /* Sync to local storage */
 chrome.storage.local.get('isSync', (data) => {
   keys = [
-    'leetcodesync_token',
-    'leetcodesync_username',
-    'pipe_leetcodesync',
+    'leetsync_token',
+    'leetsync_username',
+    'pipe_leetsync',
     'stats',
-    'leetcodesync_hook',
+    'leetsync_hook',
     'mode_type',
   ];
   if (!data || !data.isSync) {
@@ -809,10 +821,10 @@ chrome.storage.local.get('isSync', (data) => {
       });
     });
     chrome.storage.local.set({ isSync: true }, (data) => {
-      console.log('LeetCodeSync Synced to local values');
+      console.log('LeetSync Synced to local values');
     });
   } else {
-    console.log('LeetCodeSync Local storage already synced!');
+    console.log('LeetSync Local storage already synced!');
   }
 });
 
@@ -823,6 +835,6 @@ injectStyle();
 function injectStyle() {
   const style = document.createElement('style');
   style.textContent =
-    '.leetcodesync_progress {pointer-events: none;width: 2.0em;height: 2.0em;border: 0.4em solid transparent;border-color: #eee;border-top-color: #3E67EC;border-radius: 50%;animation: loadingspin 1s linear infinite;} @keyframes loadingspin { 100% { transform: rotate(360deg) }}';
+    '.leetsync_progress {pointer-events: none;width: 2.0em;height: 2.0em;border: 0.4em solid transparent;border-color: #eee;border-top-color: #3E67EC;border-radius: 50%;animation: loadingspin 1s linear infinite;} @keyframes loadingspin { 100% { transform: rotate(360deg) }}';
   document.head.append(style);
 }

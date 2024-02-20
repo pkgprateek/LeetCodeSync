@@ -2,7 +2,7 @@
   Automatically sync your code to GitHub.
 </h1>
 
-## What is LeetCodeSync?
+## What is LeetSync?
 
 <p>A fork of <a href="https://github.com/QasimWani/LeetHub">LeetHub</a> created by user <a hreaf="https://github.com/QasimWani">Qasim Wani</a>. This is a chrome extension that automatically pushes your code to GitHub when you pass all tests on a <a href="http://leetcode.com/">Leetcode</a> problem. </p>
 
@@ -17,27 +17,27 @@ I had two major reasons to fork LeetHub:
   Therefore, all the updates made to this fork are for my convinience. But, everyone is welcome to use this extension as they please.
 </p>
 
-## How does LeetCodeSync work?
+## How does LeetSync work?
 
-<h4> Your LeetCodeSync portfolio could look like <a href="https://github.com/tanyarajhans/LeetCode"> this</a>!  </h4>
+<h4> Your LeetSync portfolio could look like <a href="https://github.com/tanyarajhans/LeetCode"> this</a>!  </h4>
 <p>It's as simple as:</p>
 <ol>
-  <li>After installation, launch LeetCodeSync.</li>
-  <li>Click on "authorize with GitHub" button to automatically set up your account with LeetCodeSync.</li>
-  <li>Setup an existing/new repository with LeetCodeSync (private by default) by clicking "Get Started" button.</li>
+  <li>After installation, launch LeetSync.</li>
+  <li>Click on "authorize with GitHub" button to automatically set up your account with LeetSync.</li>
+  <li>Setup an existing/new repository with LeetSync (private by default) by clicking "Get Started" button.</li>
   <li>Begin Leetcoding! To view your progress, simply click on the extension!</li>
 </ol>
 
-#### BONUS: Star [this repository](https://github.com/pkgprateek/LeetCodeSync) for further development of features. If you want a particular feature, simply [request](https://github.com/pkgprateek/LeetCodeSync/labels/feature) for it!
+#### BONUS: Star [this repository](https://github.com/pkgprateek/LeetSync) for further development of features. If you want a particular feature, simply [request](https://github.com/pkgprateek/LeetSync/labels/feature) for it!
 
-# How to set up LeetCodeSync for local development?
+# How to set up LeetSync for local development?
 
 <ol>
   <li>Fork this repo and clone to your local machine</li>
   <li>Go to <a href="chrome://extensions">chrome://extensions</a> </li>
   <li>Enable <a href="https://www.mstoic.com/enable-developer-mode-in-chrome/">Developer mode</a> by toggling the switch on top right corner</li>
   <li>Click 'Load unpacked'</li>
-  <li>Select the entire LeetCodeSync folder</li>
+  <li>Select the entire LeetSync folder</li>
   <li>Run "npm run setup" to install the developer dependencies</li>
 </ol>
 

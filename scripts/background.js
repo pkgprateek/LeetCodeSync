@@ -1,3 +1,5 @@
+let window = self;
+
 function handleMessage(request) {
   if (
     request &&
@@ -6,26 +8,27 @@ function handleMessage(request) {
   ) {
     /* Set username */
     chrome.storage.local.set(
-      { leetcodesync_username: request.username },
+      { leetsync_username: request.username },
       () => {
-        window.localStorage.leetcodesync_username = request.username;
+        window.localStorage.leetsync_username = request.username;
       },
     );
 
     /* Set token */
     chrome.storage.local.set(
-      { leetcodesync_token: request.token },
+      { leetsync_token: request.token },
       () => {
-        window.localStorage[request.KEY] = request.token;
+        window.localStorage[request.KEY ?? 'leetsync_token'] =
+          request.token;
       },
     );
 
     /* Close pipe */
-    chrome.storage.local.set({ pipe_leetcodesync: false }, () => {
+    chrome.storage.local.set({ pipe_leetsync: false }, () => {
       console.log('Closed pipe.');
     });
 
-    chrome.tabs.getSelected(null, function (tab) {
+    chrome.tabs.query(null, function (tab) {
       chrome.tabs.remove(tab.id);
     });
 
@@ -40,7 +43,7 @@ function handleMessage(request) {
     alert(
       'Something went wrong while trying to authenticate your profile!',
     );
-    chrome.tabs.getSelected(null, function (tab) {
+    chrome.tabs.query(null, function (tab) {
       chrome.tabs.remove(tab.id);
     });
   }

@@ -7,9 +7,9 @@
 // };
 
 /* Commit messages */
-const README_MSG = 'Create README - LeetCodeSync';
-const SUBMIT_MSG = 'Added solution - LeetCodeSync';
-const UPDATE_MSG = 'Updated solution - LeetCodeSync';
+const README_MSG = 'Create README - LeetSync';
+const SUBMIT_MSG = 'Added solution - LeetSync';
+const UPDATE_MSG = 'Updated solution - LeetSync';
 let START_MONITOR = true;
 const toKebabCase = (string) => {
   return string
@@ -20,8 +20,8 @@ const toKebabCase = (string) => {
 };
 
 function findGfgLanguage() {
-  const ele = document.getElementsByClassName('divider text')[0]
-    .innerText;
+  const ele =
+    document.getElementsByClassName('divider text')[0].innerText;
   const lang = ele.split('(')[0].trim();
   if (lang.length > 0 && languages[lang]) {
     return languages[lang];
@@ -66,7 +66,7 @@ function getCode() {
   var editorContent = editor.getValue();
   var para = document.createElement("pre");
   para.innerText+=editorContent;
-  para.setAttribute("id","codeDataLeetCodeSync")
+  para.setAttribute("id","codeDataLeetSync")
   document.body.appendChild(para);
   `;
 
@@ -78,8 +78,7 @@ function getCode() {
     document.head ||
     document.documentElement
   ).appendChild(script);
-  const text = document.getElementById('codeDataLeetCodeSync')
-    .innerText;
+  const text = document.getElementById('codeDataLeetSync').innerText;
 
   const nodeDeletionScript = `
   document.body.removeChild(para)
